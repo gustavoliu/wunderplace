@@ -1,6 +1,5 @@
 
-
-<%= simple_form_for [@user, @room] do |f| %>
+<%= simple_form_for @room do |f| %>
   <%= f.input :type %>
   <%= f.input :address %>
   <%= f.button :submit %>
