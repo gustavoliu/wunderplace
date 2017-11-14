@@ -18,7 +18,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.user = current_user
     if @room.save
-      redirect_to room_path(@room)
+      redirect_to edit_room_path(@room)
     else
       render :new
     end
@@ -46,7 +46,7 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:address, :type, :photos, :description, :name, :published, :user_id, :published, :created_at, :updated_at, :air_conditioning, :secretary, :psychology_couch, :cleaning, :smoking_allowed)
+    params.require(:room).permit(:address, :type, :photos, :description, :name, :published, :published, :air_conditioning, :secretary, :psychology_couch, :cleaning, :smoking_allowed)
   end
 
   def set_room
