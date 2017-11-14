@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   get 'rooms/show'
 
-  get 'users/create'
+  # get 'users/create'
+
+  resources :users, only: [:edit, :update]
 
   devise_for :users
   root to: 'pages#home'
