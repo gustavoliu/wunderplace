@@ -12,7 +12,6 @@ class RoomsController < ApplicationController
 
   def show
     @room = room.find(params[:id])
-    @review = Review.new
   end
 
   def create
