@@ -10,10 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114131154) do
+ActiveRecord::Schema.define(version: 20171114135016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "content"
+    t.integer "reservation_id"
+    t.integer "reviewer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "address"
+    t.string "type"
+    t.string "photos"
+    t.text "description"
+    t.string "name"
+    t.integer "user_id"
+    t.boolean "published"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "air_conditioning"
+    t.boolean "secretary"
+    t.boolean "psychology_couch"
+    t.boolean "cleaning"
+    t.boolean "smoking_allowed"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,6 +63,15 @@ ActiveRecord::Schema.define(version: 20171114131154) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "cpf"
+    t.string "password"
+    t.string "address"
+    t.boolean "seller"
+    t.string "phone_number"
+    t.string "photo"
+    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
