@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20171114184407) do
     t.boolean "psychology_couch"
     t.boolean "cleaning"
     t.boolean "smoking_allowed"
-    t.integer "price_cents", default: 0, null: false
+    t.integer "price_centavos", default: 0, null: false
     t.string "price_currency", default: "BRL", null: false
   end
 
