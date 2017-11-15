@@ -25,11 +25,6 @@ class RoomsController < ApplicationController
   end
 
   def edit
-    if @room.save
-      redirect_to edit_room_path(@room)
-    else
-      render :edit
-    end
   end
 
   def update
