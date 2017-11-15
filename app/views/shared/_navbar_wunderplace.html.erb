@@ -11,10 +11,32 @@
 
       <!-- Links when logged in -->
       <%= link_to "Compartilhe seu consultório", new_room_path, class: "navbar-wagon-item navbar-wagon-link" %>
-       <%= link_to "Reserve um consultório", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Faça uma Reserva", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Add Avatar with dropdown menu -->
-    <!--  -->
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to edit_user_registration_path do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Perfil") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to root_path do %>
+                <i class="fa fa-home"></i>  <%= t(".profile", default: "Início") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Sair") %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     <% else %>
       <!-- Login link (when logged out) -->
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
@@ -22,15 +44,45 @@
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
+
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
+
+        <% if user_signed_in? %>
+
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to edit_user_registration_path do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Perfil") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to root_path do %>
+                <i class="fa fa-home"></i>  <%= t(".profile", default: "Início") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Sair") %>
+              <% end %>
+            </li>
+          </ul>
+
+        <% else %>
+
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to new_user_session_path do %>
+                <i class="fa fa-sign-in"></i>  <%= t(".sign_in", default: "Login") %>
+              <% end %>
+            </li>
+          </ul>
+
+        <% end %>
+
     </div>
   </div>
+
 </div>
 
