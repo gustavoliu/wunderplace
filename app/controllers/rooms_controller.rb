@@ -24,6 +24,13 @@ class RoomsController < ApplicationController
     end
   end
 
+  def edit
+    if @room.save
+      redirect_to edit_room_path(@room)
+    else
+      render :edit
+    end
+  end
 
   def update
     if @room.update(room_params)
@@ -44,7 +51,7 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:address, :type, :photos, :description, :name, :published, :price, :air_conditioning, :secretary, :psychology_couch, :cleaning, :smoking_allowed)
+    params.require(:room).permit(:address, :type, :photos, :description, :name, :published, :published, :air_conditioning, :secretary, :psychology_couch, :cleaning, :smoking_allowed)
   end
 
   def set_room

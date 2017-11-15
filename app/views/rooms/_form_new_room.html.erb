@@ -1,6 +1,6 @@
 
 <%= simple_form_for @room do |f| %>
-  <%= f.input :type %>
+  <%= f.input :type, collection: ['Psicologia', 'Odontologia', 'Nutrição', 'Psiquiatria'] %>
   <%= f.input :address %>
   <%= f.button :submit %>
   <% end %>
