@@ -95,7 +95,7 @@ seed5 = Room.create!(
   price_centavos: 100.00
 )
 
-seed5.photo_urls = ["https://i.pinimg.com/originals/75/da/7a/75da7a9fdf15600043a21305dd45ac96.jpg1"]
+seed5.photo_urls = ["https://i.pinimg.com/originals/75/da/7a/75da7a9fdf15600043a21305dd45ac96.jpg"]
 seed5.save!
 
 seed6 = Room.create!(
