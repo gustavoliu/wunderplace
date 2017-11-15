@@ -1,3 +1,31 @@
-.banner {
-  background-size: cover;
+
+
+.banner-content {
+  width: 400px;
+  margin: 50px;
+  align-items: right;
 }
+
+
+.banner {
+  color: white;
+  text-align: center;
+  height: 100vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner_title {
+  width: 500px;
+  margin: 50px;
+  align-items: center;
+}
+
+.banner_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
