@@ -24,6 +24,8 @@ class RoomsController < ApplicationController
     end
   end
 
+  def edit
+  end
 
   def update
     if @room.update(room_params)
@@ -44,7 +46,7 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:address, :type,  :description, :name, :published, :price, :air_conditioning, :secretary, :psychology_couch, :cleaning, :smoking_allowed, photos: [])
+    params.require(:room).permit(:address, :type, :description, :name, :price, :published, :air_conditioning, :secretary, :psychology_couch, :cleaning, :smoking_allowed, photos: [])
   end
 
   def set_room
