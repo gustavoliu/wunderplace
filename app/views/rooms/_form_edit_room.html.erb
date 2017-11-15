@@ -1,12 +1,22 @@
+
+
 <%= simple_form_for [@user, @room] do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :price %>
-  <%= f.input :secretary, as: :boolean %>
-  <%= f.input :psychology_couch, as: :boolean %>
-  <%= f.input :cleaning, as: :boolean %>
-  <%= f.input :smoking_allowed, as: :boolean %>
+  <div>
+    <br>
+      <h4> Opcionais:</h4>
+    <%= f.input :secretary, as: :boolean %>
+    <%= f.input :psychology_couch, as: :boolean %>
+    <%= f.input :cleaning, as: :boolean %>
+    <%= f.input :smoking_allowed, as: :boolean %>
+  </div>
+  <br>
   <%= f.input :photos, as: :attachinary %>
   <%= f.button :submit %>
 <% end%>
+
+
+
 
