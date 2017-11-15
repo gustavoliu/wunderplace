@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :reservations
   has_many :rooms
   has_many :reviews
+  validates :first_name, :last_name, :birthday, :cpf, :phone_number, :address, :email, presence: true, on: :update
 end
