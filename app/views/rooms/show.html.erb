@@ -1,6 +1,12 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<h1><%= @room.name %></h1>
+
+<p><%= @room.description %></p>
+<p><%= @room.address %></p>
+<p><%= @room.price %></p>
 
 <% @room.photos.each do |photo| %>
-  <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+<%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
 <% end %>
+<p><%= link_to 'Editar', edit_room_url %></p>
+
+
