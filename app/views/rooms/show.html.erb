@@ -1,14 +1,12 @@
-<div class="container">
-  <h1><%= @room.name %></h1>
+<h1><%= @room.name %></h1>
 
-  <p><%= @room.description %></p>
-  <p><%= @room.address %></p>
-  <p><%= @room.price %></p>
+<p><%= @room.description %></p>
+<p><%= @room.address %></p>
+<p><%= @room.price %></p>
 
-  <% @room.photos.each do |photo| %>
-  <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
-  <% end %>
+<% @room.photos.each do |photo| %>
+<%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+<% end %>
+<p><%= link_to 'Editar', edit_room_url %></p>
 
-  <%= link_to 'Editar', edit_room_url %>
 
-</div>
