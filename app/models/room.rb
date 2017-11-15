@@ -4,4 +4,5 @@ class Room < ApplicationRecord
 
   has_many :reservations
   belongs_to :user
+  has_attachments :photos, maximum: 3
 end

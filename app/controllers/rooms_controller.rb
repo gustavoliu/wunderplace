@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [ :edit, :update]
-  #skip_before_action terá alguma para autenticar usuário?
+  skip_before_action :authenticate_user!
 
   def index
     @rooms = Room.all
@@ -46,7 +46,7 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:address, :type, :photos, :description, :name, :published, :published, :air_conditioning, :secretary, :psychology_couch, :cleaning, :smoking_allowed)
+    params.require(:room).permit(:address, :type, :description, :name, :published, :published, :air_conditioning, :secretary, :psychology_couch, :cleaning, :smoking_allowed, photos: [])
   end
 
   def set_room
