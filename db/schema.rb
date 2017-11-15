@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114135016) do
+ActiveRecord::Schema.define(version: 20171114184407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20171114135016) do
     t.boolean "psychology_couch"
     t.boolean "cleaning"
     t.boolean "smoking_allowed"
+    t.integer "price_centavos", default: 0, null: false
+    t.string "price_currency", default: "BRL", null: false
   end
 
   create_table "users", force: :cascade do |t|

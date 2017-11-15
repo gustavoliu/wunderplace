@@ -5,4 +5,5 @@ class Room < ApplicationRecord
   has_many :reservations
   belongs_to :user
   has_attachments :photos, maximum: 3
+  monetize :price_centavos, as: :price # required by 'money-rails' gem
 end

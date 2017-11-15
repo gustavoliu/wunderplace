@@ -9,6 +9,9 @@ gem 'puma'
 gem 'rails', '5.1.4'
 gem 'redis'
 
+gem "cpf_cnpj"
+gem 'money-rails', '~>1'
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
