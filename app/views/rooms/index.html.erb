@@ -1,0 +1,9 @@
+<%= render 'banner_room' %>
+
+<div class="container">
+  <div class="row">
+    <% @rooms.each do |room| %>
+      <%= render 'card_rooms', room: room %>
+    <% end %>
+  </div>
+</div>
