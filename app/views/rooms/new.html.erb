@@ -1,10 +1,12 @@
-<%= render "banner_room" %>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1> Novo consultório </h1>
-      <%= render "form_new_room" %>
-      <%= link_to 'Back', rooms_path %>
+<!--  render "banner_room"  -->
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(150,168,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path('sofa.jpg') %>');">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <h1> Novo consultório </h1>
+        <%= render "form_new_room" %>
+        <%= link_to 'Back', rooms_path %>
+      </div>
     </div>
   </div>
 </div>
