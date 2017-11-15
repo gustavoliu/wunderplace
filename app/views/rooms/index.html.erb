@@ -9,14 +9,15 @@
     </div>
     <div class="row" id="card">
       <% @rooms.each do |room| %>
-        <div class="col">
-          <% if room.photos? %>
-            <%= cl_image_tag room.photos.first.path, width: 300, height: 200,
-              crop: :fill%>
-          <% end %>
-          <%= room.name %>
-          <%= link_to 'Ver detalhes', room %>
-        </div>
+      <%= link_to room do %>
+      <div class="col">
+        <% if room.photos? %>
+        <%= cl_image_tag room.photos.first.path, width: 300, height: 200,
+        crop: :fill%>
+        <% end %>
+        <%= room.name %>
+        <% end %>
+      </div>
       <% end %>
     </div>
   </div>
