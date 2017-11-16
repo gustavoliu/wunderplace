@@ -6,15 +6,16 @@
   <%= f.input :price, label: 'Preço' %>
   <div>
     <br>
-      <h4> Opcionais:</h4>
-  <%= f.input :secretary, as: :boolean, label: 'Secretária' %>
-  <%= f.input :psychology_couch, as: :boolean, label: 'Divã' %>
-  <%= f.input :cleaning, as: :boolean, label: 'Limpeza' %>
-  <%= f.input :smoking_allowed, as: :boolean, label: 'Área fumantes' %>
+      <h4> Comodidades:</h4>
+        <%= f.input :secretary, as: :boolean, label: 'Secretária' %>
+        <%= f.input :psychology_couch, as: :boolean, label: 'Divã' %>
+      <h4> Regras do local:</h4>
+        <%= f.input :cleaning, as: :boolean, label: 'Limpeza' %>
+        <%= f.input :smoking_allowed, as: :boolean, label: 'Área fumantes' %>
   </div>
   <br>
   <%= f.input :photos, as: :attachinary, label: 'Fotos' %>
-  <%= f.button :submit %>
+  <%= f.submit "Avançar", class: 'btn btn-primary', align: 'right' %>
 <% end%>
 
 
