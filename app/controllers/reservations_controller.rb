@@ -1,6 +1,8 @@
 class ReservationsController < ApplicationController
   # skip_before_action :authenticate_user!
   # before_action :set_reservation, only: [ :accept, :decline ]
+  def new
+  end
 
   def create
     # @reservation = Reservation.new(reservation_params)
