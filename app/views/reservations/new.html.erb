@@ -1,2 +1,15 @@
 <h1>Reservations#new</h1>
 <p>Find me in app/views/reservations/new.html.erb</p>
+
+<input type="text" class='datepicker' >
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
+      $('.datepicker').datepicker({
+        format: "dd/mm/yy",
+        language: "pt-BR"
+      });
+    });
+  <% end %>
+<% end %>
