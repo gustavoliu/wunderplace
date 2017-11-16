@@ -4,6 +4,11 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
+    @hash = Gmaps4rails.build_markers(@rooms) do |room, marker|
+      marker.lat room.latitude
+      marker.lng room.longitude
+      # marker.infowindow render_to_string(partial: "/rooms/map_box", locals: { room: room })
+    end
   end
 
   def new
@@ -12,6 +17,8 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @alert_message = "você está vendo #{@room.name}"
+    @room_coordinates = { lat: @room.latitude, lng: @room.longitude }
   end
 
   def create
