@@ -2,16 +2,14 @@
   <div class="banner_search_title">
     <h2 align="left">Encontre o espaço de trabalho ideal para você.</h2>
   </div>
-</div>
-
-<div class="text-center" id="search-form">
-  <%= form_tag rooms_path, method: :get do %>
-    <%= text_field_tag "address", nil, placeholder: "Endereço" %>
-    <%= select_tag(:type, options_for_select(['Psicologia', 'Odontologia', 'Nutrição', 'Psiquiatria'])) %>
-    <%= text_field_tag "when", nil, placeholder: "dd/mm/yyyy" %>
-
-    <%= button_tag :submit do %>
-      Buscar
+  <div class="search-form">
+      <%= form_tag rooms_path, method: :get, class: "form-inline" do %>
+      <%= text_field_tag "address", nil, placeholder: "Endereço", class: "form-control" %>
+      <%= text_field_tag "when", nil, placeholder: "dd/mm/yyyy", class: "form-control" %>
+      <%= select_tag(:type, options_for_select(['Psicologia', 'Odontologia', 'Nutrição', 'Psiquiatria']), class: "form-control") %>
+      <%= button_tag :submit, class: "btn btn-success" do %>
+        Buscar
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

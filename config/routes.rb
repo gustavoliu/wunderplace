@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
-  resources :reservations
-  # resources :rooms
-  resources :reviews
+
+  root to: 'rooms#home'
 
   devise_for :users, controllers: { registrations: "registrations" }, :path => 'devise'
   resources :users, only: [:edit, :update]
@@ -11,7 +10,8 @@ Rails.application.routes.draw do
     resources :reservations, only: [:create]
   end
 
-  root to: 'rooms#home'
+  resources :reviews
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 

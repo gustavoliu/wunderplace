@@ -1,4 +1,6 @@
 class Room < ApplicationRecord
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
   # Check: https://stackoverflow.com/a/10467096
   self.inheritance_column = nil
 
