@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update]
-  # skip_before_action :authenticate_user!, only: :edit
 
   def edit
   end
@@ -20,6 +19,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :birthday, :cpf, :password, :address, :phone_number,  photos: [])
+    params.require(:user).permit(:first_name, :last_name, :birthday, :cpf, :password, :address, :phone_number, :photo)
   end
 end
