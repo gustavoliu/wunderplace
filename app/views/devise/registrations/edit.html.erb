@@ -1,40 +1,49 @@
-<h2>Alterar informações do perfil</h2>
+<div class="container">
+  <h3>Alterar informações do perfil</h3>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
+    <div class="form_wrapper">
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+
+    <!-- How can a user upload his own photos? -->
+        <br>
+        <%= f.input :photo, as: :attachinary, label: 'Sua foto' %>
+        <%= f.input :first_name, autofocus: true, label: 'Nome' %>
+        <%= f.input :last_name, autofocus: true, label: 'Sobrenome' %>
+        <%= f.input :birthday, label: 'Data de nascimento',
+                    as: :date, start_year: Date.today.year,
+                    end_year: Date.today.year - 100,
+                    order: [:day, :month, :year] %>
+
+        <%= f.input :cpf, autofocus: true, label: 'CPF' %>
+        <%= f.input :address, autofocus: true, label: 'Endereço' %>
+        <%= f.input :phone_number, autofocus: true, label: 'Telefone' %>
+        <%= f.input :email, required: true, autofocus: true, label: 'E-mail' %>
+        <%= f.input :password, autocomplete: "off", hint: "deixe em branco caso queira manter a mesma senha", required: false, label: 'Senha' %>
+        <%= f.input :password_confirmation, required: false, label: 'Confirme sua senha' %>
+        <%= f.input :current_password, label: 'Senha atual', hint: "precisamos da sua senha atual para confirmar as alterações", required: true %>
+        <%= f.submit "Atualizar", class: 'btn btn-primary'%>
+
+
+      <div class="form-actions">
+
+      </div>
     <% end %>
-
-<!-- How can a user upload his own photos? -->
-    <br>
-    <%= f.input :photo, as: :attachinary, label: 'Sua foto' %>
-    <%= f.input :first_name, autofocus: true, label: 'Nome' %>
-    <%= f.input :last_name, autofocus: true, label: 'Sobrenome' %>
-    <%= f.input :birthday, label: 'Data de nascimento',
-                as: :date, start_year: Date.today.year,
-                end_year: Date.today.year - 100,
-                order: [:day, :month, :year] %>
-
-    <%= f.input :cpf, autofocus: true, label: 'CPF' %>
-    <%= f.input :address, autofocus: true, label: 'Endereço' %>
-    <%= f.input :phone_number, autofocus: true, label: 'Telefone' %>
-    <%= f.input :email, required: true, autofocus: true, label: 'E-mail' %>
-    <%= f.input :password, autocomplete: "off", hint: "deixe em branco caso queira manter a mesma senha", required: false, label: 'Senha' %>
-    <%= f.input :password_confirmation, required: false, label: 'Confirme sua senha' %>
-    <%= f.input :current_password, label: 'Senha atual', hint: "precisamos da sua senha atual para confirmar as alterações", required: true %>
+     <div class="cancel_account">
+      <div class="row">
+        <div class="col-xs-6">
+          <align="right"><%= link_to "Voltar", :back %></align="right">
+        </div>
+        <div class="col-xs-6">
+           <%= link_to "Apagar minha conta", registration_path(resource_name), data: { confirm: "Esta ação é irreversível. Tem certeza?" }, method: :delete %></p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Atualizar" %>
-  </div>
-<% end %>
-
-<h3>Cancelar minha conta</h3>
-
-<p>Insatisfeito? <%= link_to "Apagar minha conta", registration_path(resource_name), data: { confirm: "Esta ação é irreversível. Tem certeza?" }, method: :delete %></p>
-
-<%= link_to "Voltar", :back %>
