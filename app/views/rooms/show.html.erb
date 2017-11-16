@@ -6,11 +6,12 @@
 
 <div id="room-description">
   <h4><%= @room.description %></h4>
-  <p> Endereço: <%= @room.address %></p>
-  <p><%= @room.price %></p>
+  <p> Endereço: <%= @room.address %> (<%= @room.price %>)</p>
 </div>
 
+
 <div id="features">
+  <h4> Comodidades </h4>
   <ul>
     <li>
       <%= render partial: 'block_feature', locals: {feature: 'Secretária', boolean: @room.secretary}  %>
