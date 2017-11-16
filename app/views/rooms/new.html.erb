@@ -1,11 +1,10 @@
 <!--  render "banner_room"  -->
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(150,168,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path('sofa.jpg') %>');">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(150,168,168,0.6) 0%, rgba(0,61,61,0.6) 50%), url('<%= image_path('sofa.jpg') %>');">
   <div class="container">
     <div class="row">
+      <h1> Ganhe dinheiro compartilhando seu consultório </h1>
       <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <h1> Novo consultório </h1>
         <%= render "form_new_room" %>
-        <%= link_to 'voltar', rooms_path %>
         <br>
         <br>
         <br>
