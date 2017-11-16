@@ -1,24 +1,27 @@
-
-
 <div class="banner_search" style="background-image: linear-gradient(-225deg, rgba(150,168,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path('search1.png') %>');">
-  <h2 align="left">Encontre o espaço de trabalho ideal para você.</h2>
+  <div class="banner_search_title">
+    <h2 align="left">Encontre o espaço de trabalho ideal para você.</h2>
+  </div>
 </div>
-<div class="card-container">
-  <div class="banner_wrapper">
-    <div class="banner_search_title">
-    </div>
-    <div class="row" id="card">
-      <% @rooms.each do |room| %>
-        <div class="col">
+
+
+<div class="banner_wrapper">
+  <div class="container">
+   <div class="row">
+    <% @rooms.each do |room| %>
+      <div class="col-sm-3">
+        <div id="card">
           <% if room.photos? %>
-            <%= cl_image_tag room.photos.first.path, width: 300, height: 200,
-              crop: :fill%>
+          <%= cl_image_tag room.photos.first.path, width: 300, height: 200, crop: :fill%>
+
           <% end %>
           <%= room.name %>
           <%= link_to 'Ver detalhes', room %>
         </div>
-      <% end %>
-    </div>
+
+      </div>
+    <% end %>
+
   </div>
 </div>
 
