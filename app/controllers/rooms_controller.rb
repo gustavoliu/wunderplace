@@ -4,6 +4,13 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
+    # if params[:when].present?
+    #   @rooms = @rooms.where(...)
+    # end
+
+    if params[:type].present?
+      @rooms = @rooms.where(type: params[:type])
+    end
   end
 
   def new
