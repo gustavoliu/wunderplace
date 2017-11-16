@@ -2,6 +2,7 @@ class ReservationsController < ApplicationController
   # skip_before_action :authenticate_user!
   # before_action :set_reservation, only: [ :accept, :decline ]
   def new
+    @room = Room.find(params[:room_id])
   end
 
   def create
