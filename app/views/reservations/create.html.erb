@@ -1,2 +1,9 @@
 <h1>Reservations#create</h1>
 <p>Find me in app/views/reservations/create.html.erb</p>
+
+
+<%= simple_form_for [@vehicle,@reservation] do |f| %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
