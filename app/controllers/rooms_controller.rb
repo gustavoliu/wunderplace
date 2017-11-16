@@ -2,8 +2,18 @@ class RoomsController < ApplicationController
   before_action :set_room, only: [ :edit, :update]
   skip_before_action :authenticate_user!
 
+  def home
+  end
+
   def index
     @rooms = Room.all
+    # if params[:when].present?
+    #   @rooms = @rooms.where(...)
+    # end
+
+    if params[:type].present?
+      @rooms = @rooms.where(type: params[:type])
+    end
   end
 
   def new
