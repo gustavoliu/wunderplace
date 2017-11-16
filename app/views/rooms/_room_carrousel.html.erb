@@ -10,7 +10,7 @@
   <div class="carousel-inner">
     <% @room.photos.each do |photo| %>
       <div class='item <%= @room.photo_active(photo) %>'>
-        <%= cl_image_tag(photo.path, width: 375, height: 250, crop: :scale) %>
+        <%= cl_image_tag(photo.path, width: 900, height: 600, crop: :scale) %>
       </div>
     <% end %>
   </div>
