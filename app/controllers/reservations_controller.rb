@@ -18,12 +18,15 @@ class ReservationsController < ApplicationController
     # end
   end
 
-
-  def accept
-
+  def find_by_date(room_id, date) # returns array of reservations of a room in given date
+    result = []
+    Reservation.all.each do |reservation|
+      result << reservation if reservation.date == date
+    end
+    result
   end
 
-  def decline
+  def available_hours(date)
 
   end
 
@@ -34,7 +37,7 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    # params.require(:reservation).permit(:start_time, :end_time)
+    params.require(:reservation).permit(:date, :timeslot)
   end
 
 end
