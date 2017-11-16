@@ -4,6 +4,7 @@
   </div>
 </div>
 
+
 <div class="banner_wrapper">
   <div class="container">
    <div class="row">
@@ -12,12 +13,15 @@
         <div id="card">
           <% if room.photos? %>
           <%= cl_image_tag room.photos.first.path, width: 300, height: 200, crop: :fill%>
+
           <% end %>
           <%= room.name %>
           <%= link_to 'Ver detalhes', room %>
         </div>
+
       </div>
     <% end %>
+
   </div>
 </div>
 
