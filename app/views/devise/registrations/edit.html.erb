@@ -11,7 +11,7 @@
 
 <!-- How can a user upload his own photos? -->
     <br>
-
+    <%= f.input :photo, as: :attachinary, label: 'Sua foto' %>
     <%= f.input :first_name, autofocus: true, label: 'Nome' %>
     <%= f.input :last_name, autofocus: true, label: 'Sobrenome' %>
     <%= f.input :birthday, label: 'Data de nascimento',
