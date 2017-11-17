@@ -1,29 +1,31 @@
-<form class="form-inline">
+
+<form action="<%=room_reservations_path%>" method="POST" class="form-inline">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
   <div class="container">
     <div class="form-group">
-      <input type="text" id='datepicker' class='datepicker' placeholder="Quando?">
+      <input type="text" id='datepicker' class='datepicker' placeholder="Quando?" name="date">
     </div>
+
     <div class="form-group">
       <!-- https://codepen.io/bseth99/pen/fboKH -->
       <div class="row">
         <div class="col-lg-6">
-          <!-- <div class="button-group"> -->
           <button type="button" id="timeslots-menu" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Horários disponíveis</button>
           <ul class="dropdown-menu">
             <% (7..21).each do |n| %>
               <li>
                 <a href="#" id=<%= "#{n}" %> class="small" data-value=<%= "#{n}" %> tabIndex="-1">
-                  <input type="checkbox"/>&nbsp;<%= "#{n}:00 - #{n+1}:00" %></a>
+                  <input type="checkbox" name=<%= "timeslot_#{n}" %> value=<%= n %>>&nbsp;<%= "#{n}:00 - #{n+1}:00" %></a>
               </li>
             <% end %>
           </ul>
         </div>
-        <!-- </div> -->
       </div>
     </div>
 
     <div class="form-group" id="reserve-btn">
-      <button class="btn btn-success">Reservar</button>
+      <button type="submit" class="btn btn-success">Reservar</button>
     </div>
   </div>
 </form>
@@ -34,7 +36,7 @@
     $(document).ready(function(){
       $('.datepicker').datepicker({
         todayHighlight: true,
-        format: "dd/mm/yy",
+        format: "dd/mm/yyyy",
         language: "pt-BR"
       });
     });
@@ -76,10 +78,10 @@
       // pega o valor do datepicker
       let date = document.getElementById("datepicker").value;
       console.log(date);
-
+      "17/11/2018"
       var day = date.slice(0,2);
       var month = date.slice(3,5);
-      var year = "20" + date.slice(6,8);
+      var year = date.slice(6,10);
       var jsdate = year + "-" + month + "-" + day
       console.log(jsdate);
 

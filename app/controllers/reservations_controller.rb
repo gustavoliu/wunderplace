@@ -6,16 +6,24 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    # @reservation = Reservation.new(reservation_params)
-    # @reservation.user = current_user
-    # @room = Room.find(params[:room_id])
-    # @reservation.room = room
-    # if @reservation.save
-    #   redirect_to reservation_path(@reservation)
-    # else
-    #   flash[:alert] = "Please provide valid dates. End date should be later that start date."
-    #   redirect_to room_path(@room)
-    # end
+    timeslots = []
+    params.keys.each { |key| timeslots.push(key) if key.start_with?('timeslot_') }
+    timeslots.each do |timeslot|
+      reservation = Reservation.new
+      reservation.room_id = params[:room_id]
+      reservation.date = Date.parse(params[:date])
+      reservation.user_id = current_user.id
+      reservation.timeslot = params[timeslot]
+      reservation.save
+    end
+    redirect_to room_path(Room.find(params[:room_id]))
+    # room_id
+    # date => dd/mm/yy => Date.parse(params[:date])
+    # current_user.id => user_id
+
+    # [b, b, "timeslot_9", "timeslot_10"]
+    # timeslots => ["timeslot_9", "timeslot_10"]
+    # current_user.id => user_id
   end
 
   def find_by_date(room_id, date) # returns array of reservations of a room in given date
@@ -36,9 +44,9 @@ class ReservationsController < ApplicationController
     # @reservation = Reservation.find(params[:id])
   end
 
-  def reservation_params
-    params.require(:reservation).permit(:date, :timeslot)
-  end
+  # def reservation_params
+  #   params.require(:reservation).permit(:date, :timeslot)
+  # end
 
 end
 
