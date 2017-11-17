@@ -2,21 +2,18 @@
   position: relative;
 
   .box {
-    width: 15px;
-    height: 15px;
-    // border: 2px solid black;
-    background-color: black;
-    color: white;
-    border-radius: 50%;
     position: absolute;
     top: 5px;
     left: 155px;
-    font-size: 12px;
+    font-size: 17px;
     display: flex;
     justify-content: center;
     align-items: center;
-    i {
-      color: white;
+    #present {
+      color: green;
+    }
+    #ausent {
+      color: red;
     }
   }
 }
