@@ -16,7 +16,7 @@
           <div class="wrapper-blue">
             <div class="card-wraper">
               <div class="row">
-                <% @rooms.each do |room| %>
+                <% @rooms.select{|r| r.photos.present? }.each do |room| %>
                   <%= render 'card_rooms', room: room %>
                 <% end %>
               </div>
