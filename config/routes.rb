@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'rooms#home'
 
   devise_for :users, controllers: { registrations: "registrations" }, :path => 'devise'
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update, :show]
 
   resources :rooms do
     resources :reservations, only: [:new, :create]
