@@ -1,0 +1,6 @@
+<h1>Faça seu Review</h1>
+
+<%= simple_form_for([ @reservation, @review ]) do |form| %>
+  <%= form.input :content, as: :text %>
+  <%= form.button :submit %>
+<% end %>
