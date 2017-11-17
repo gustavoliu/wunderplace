@@ -1,18 +1,18 @@
 <form class="form-inline">
   <div class="container">
     <div class="form-group">
-      <input type="text" class='datepicker' placeholder="Quando?">
+      <input type="text" id='datepicker' class='datepicker' placeholder="Quando?">
     </div>
     <div class="form-group">
       <!-- https://codepen.io/bseth99/pen/fboKH -->
       <div class="row">
         <div class="col-lg-6">
           <!-- <div class="button-group"> -->
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Horários disponíveis</button>
+          <button type="button" id="timeslots-menu" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Horários disponíveis</button>
           <ul class="dropdown-menu">
             <% (7..21).each do |n| %>
               <li>
-                <a href="#" class="small" data-value="option1" tabIndex="-1">
+                <a href="#" id=<%= "#{n}" %> class="small" data-value=<%= "#{n}" %> tabIndex="-1" onclick="">
                   <input type="checkbox"/>&nbsp;<%= "#{n}:00 - #{n+1}:00" %></a>
               </li>
             <% end %>
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" id="reserve-btn">
       <button class="btn btn-success">Reservar</button>
     </div>
   </div>
@@ -67,7 +67,41 @@
     });
 
     const reservations = <%=raw @room.reservations.to_json %>;
-    // filtrando por data:
+
+    // quando clica no menu de escolha de timeslot
+
+    const tsmenu = document.getElementById("timeslots-menu")
+    tsmenu.addEventListener("click", (event) => {
+
+      // pega o valor do datepicker
+      let date = document.getElementById("datepicker").value;
+      console.log(date);
+
+      var day = date.slice(0,2);
+      var month = date.slice(3,5);
+      var year = "20" + date.slice(6,8);
+      var jsdate = year + "-" + month + "-" + day
+      console.log(jsdate);
+
+      // filtra as reservations por data:
+      // para cada reservation pega slots ocupados
+      var occupied = reservations.filter(reservation => reservation.date === jsdate).map(reservation => reservation.timeslot);
+
+      // para cada slot marca o item do checkbox como ocupado
+      for (var i = 0; i < occupied.length; i++) {
+        document.getElementById(occupied[i].toString()).onclick = "return false;";
+        document.getElementById(occupied[i].toString()).disabled = true;
+        document.getElementById(occupied[i].toString()).style.background = "red";
+      };
+
+    });
+
+    //
+
+    // deixa os slots por número disabled
+    // document.getElementById("slot_7").disabled = true
+    // document.getElementById("slot_7").style.background = "red"
+
     // reservations.filter(reservation => reservation.date === "2017-11-18")
     // reservations.filter(reservation => reservation.date === "2017-11-18").map(reservation => reservation.timeslot)
     // returns only the timeslots already taken. Should be not shown in the checkbox.
