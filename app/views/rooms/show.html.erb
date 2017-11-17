@@ -7,26 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap + Fontawesome CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
   </head>
     <body>
 <div class="container">
   <div class="col-xs-6">
     <div class="box_room">
       <%= render 'room_carrousel' %>
-      <h2><%= @room.name %></h2>
+      <h4><%= @room.name %></h4>
 
       <div id="room-description">
-        <h4><%= @room.description %></h4>
-        <p> Endereço: <%= @room.address %></p>
+        <P><%= @room.description %></P>
+        <h5><strong> Endereço:</strong> <%= @room.address %></h5>
         <p>R$ <%= @room.price %></p>
       </div>
 
       <div id="features">
-        <ul>
-          <h4><strong>Comodidades</strong></h4>
+        <ul class="list-unstyled">
+          <h5><strong>Comodidades</strong></h5>
           <li>
             <%= render partial: 'block_feature', locals: {feature: 'Secretária', boolean: @room.secretary}  %>
           </li>
@@ -40,11 +38,19 @@
             <%= render partial: 'block_feature', locals: {feature: 'Área fumantes', boolean: @room.smoking_allowed} %>
           </li>
         </ul>
-        <p><%= link_to 'Editar', edit_room_url, class: 'btn btn-primary'%></p>
+        <% if @room.user == current_user %>
+          <p><%= link_to 'Editar', edit_room_url, class: 'btn btn-primary'%></p>
+        <% end %>
+        <div class="reservation_module">
+          <%= link_to "Reserve agora", new_room_reservation_path(@room), class: 'btn btn-primary' %>
+        </div>
       </div>
     </div>
+
   </div>
   <div class="col-xs-6">
+
+
     <div id="map" style="width: 100%; height: 600px;"></div>
   </div>
 </div>
