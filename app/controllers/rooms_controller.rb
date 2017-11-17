@@ -33,6 +33,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @reviews = @room.reservations.map{ |r| r.reviews }.flatten
     @alert_message = "você está vendo #{@room.name}"
     @room_coordinates = { lat: @room.latitude, lng: @room.longitude }
     @hash = Gmaps4rails.build_markers(@room) do |room, marker|

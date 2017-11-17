@@ -1,0 +1,5 @@
+<% if @reviews.count.zero?  %>
+  Consultório sem avaliação.
+<% else %>
+  <%= render partial: 'reviews/review', collection: @reviews %>
+<% end %>
