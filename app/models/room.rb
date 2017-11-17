@@ -10,6 +10,8 @@ class Room < ApplicationRecord
   has_attachments :photos, maximum: 3
   monetize :price_centavos, as: :price # required by 'money-rails' gem
 
+  validates :name, :price, :photos,  presence: true
+
   def photo_active(photo)
     photo == self.photos.first ? "active" : ""
   end

@@ -1,11 +1,13 @@
 <% room.photos.each do |room_photo| %>
   <div class="col-xs-12 col-sm-6 col-md-4">
-    <div class="card" style="background-image: linear-gradient(-45deg, rgba(0,0,0,0.3), rgba(0,0,0,0.9)), url('<%= cl_image_path room_photo.path, height: 300, width: 400, crop: :fill %>');">
-      <div class="card-description">
-        <h2> <%= room.name  %> </h2>
+    <%= link_to room_path(room) do %>
+      <div class="card" style="background-image: linear-gradient(-45deg, rgba(0,0,0,0.3), rgba(0,0,0,0.9)), url('<%= cl_image_path room_photo.path, height: 300, width: 400, crop: :fill %>');">
+        <div class="card-description">
+          <h2> <%= room.name  %> </h2>
+        </div>
       </div>
-      <%= link_to "ver detalhes", room_path(room), class: "card-link" %>
-    </div>
+    <% end %>
   </div>
 <% end %>
+
 
