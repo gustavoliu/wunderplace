@@ -1,15 +1,83 @@
-<h1>Reservations#new</h1>
-<p>Find me in app/views/reservations/new.html.erb</p>
+<form class="form-inline">
+  <div class="container">
+    <div class="form-group">
+      <input type="text" class='datepicker' placeholder="Quando?">
+    </div>
+    <div class="form-group">
+      <!-- https://codepen.io/bseth99/pen/fboKH -->
+      <div class="row">
+        <div class="col-lg-6">
+          <!-- <div class="button-group"> -->
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Horários disponíveis</button>
+          <ul class="dropdown-menu">
+            <% (7..21).each do |n| %>
+              <li>
+                <a href="#" class="small" data-value="option1" tabIndex="-1">
+                  <input type="checkbox"/>&nbsp;<%= "#{n}:00 - #{n+1}:00" %></a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
 
-<input type="text" class='datepicker' >
+    <div class="form-group">
+      <button class="btn btn-success">Reservar</button>
+    </div>
+  </div>
+</form>
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
+    // Datepicker
     $(document).ready(function(){
       $('.datepicker').datepicker({
+        todayHighlight: true,
         format: "dd/mm/yy",
         language: "pt-BR"
       });
     });
+  <% end %>
+<% end %>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    // Dropdown checkbox
+    var options = [];
+    $( '.dropdown-menu a' ).on( 'click', function( event ) {
+
+       var $target = $( event.currentTarget ),
+           val = $target.attr( 'data-value' ),
+           $inp = $target.find( 'input' ),
+           idx;
+
+       if ( ( idx = options.indexOf( val ) ) > -1 ) {
+          options.splice( idx, 1 );
+          setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+       } else {
+          options.push( val );
+          setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+       }
+
+       $( event.target ).blur();
+
+       console.log( options );
+       return false;
+    });
+
+    const reservations = <%=raw @room.reservations.to_json %>;
+    // filtrando por data:
+    // reservations.filter(reservation => reservation.date === "2017-11-18")
+    // reservations.filter(reservation => reservation.date === "2017-11-18").map(reservation => reservation.timeslot)
+    // returns only the timeslots already taken. Should be not shown in the checkbox.
+    console.log(reservations);
+
+    $("#date").change(resetTimes);
+
+    function resetTimes() {
+      // filtrar agendamentos para aquele dia
+      // marcar horarios ja agendados para aquele dia como disabled
+    }
   <% end %>
 <% end %>
