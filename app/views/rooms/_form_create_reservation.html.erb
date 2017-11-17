@@ -1,33 +1,30 @@
-<form action="<%=room_reservations_path%>" method="POST" class="form-inline">
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<div class="wrapper_registration">
 
-  <div class="container">
-    <div class="form-group">
-      <input type="text" id='datepicker' class='datepicker' placeholder="Quando?" name="date">
-    </div>
+  <form action="<%=room_reservations_path(@room)%>" method="POST" class="form-inline">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input type="hidden" name="room_id" value=<%= @room.id %>>
 
-    <div class="form-group">
-      <!-- https://codepen.io/bseth99/pen/fboKH -->
-      <div class="row">
-        <div class="col-lg-6">
-          <button type="button" id="timeslots-menu" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Horários disponíveis</button>
-          <ul class="dropdown-menu">
-            <% (7..21).each do |n| %>
-              <li>
-                <a href="#" id=<%= "#{n}" %> class="small" data-value=<%= "#{n}" %> tabIndex="-1">
-                  <input type="checkbox" name=<%= "timeslot_#{n}" %> value=<%= n %>>&nbsp;<%= "#{n}:00 - #{n+1}:00" %></a>
-              </li>
-            <% end %>
-          </ul>
+        <input type="text" id='datepicker' class="datepicker" placeholder="Quando?" name="date">
+
+        <!-- https://codepen.io/bseth99/pen/fboKH -->
+        <div class="row">
+          <div class="col-lg-6">
+            <button type="button" id="timeslots-menu" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Horários disponíveis</button>
+            <ul class="dropdown-menu">
+              <% (7..21).each do |n| %>
+                <li>
+                  <a href="#" id=<%= "#{n}" %> class="small" data-value=<%= "#{n}" %> tabIndex="-1">
+                    <input type="checkbox" name=<%= "timeslot_#{n}" %> value=<%= n %>>&nbsp;<%= "#{n}:00 - #{n+1}:00" %></a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group" id="reserve-btn">
-      <button type="submit" class="btn btn-success">Reservar</button>
-    </div>
-  </div>
-</form>
+        <button type="submit" class="btn btn-success">Reservar</button>
+
+  </form>
+</div>
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
