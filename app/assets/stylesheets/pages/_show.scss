@@ -1,19 +1,1 @@
-.block {
-  position: relative;
 
-  .box {
-    position: absolute;
-    top: 5px;
-    left: 155px;
-    font-size: 17px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    #present {
-      color: green;
-    }
-    #ausent {
-      color: red;
-    }
-  }
-}
