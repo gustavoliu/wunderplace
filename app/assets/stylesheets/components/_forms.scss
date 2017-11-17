@@ -29,3 +29,13 @@
   justify-content: center;
 }
 
+.wrapper_registration {
+  display: flex;
+  margin: 50px 0px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+#datepicker {
+  width: 160px;
+}

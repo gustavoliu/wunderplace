@@ -1,0 +1,95 @@
+<div class="wrapper_registration">
+
+  <form action="<%=room_reservations_path(@room)%>" method="POST" class="form-inline">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input type="hidden" name="room_id" value=<%= @room.id %>>
+
+        <input type="text" id='datepicker' class="datepicker" placeholder="Quando?" name="date">
+
+        <!-- https://codepen.io/bseth99/pen/fboKH -->
+        <div class="row">
+          <div class="col-lg-6">
+            <button type="button" id="timeslots-menu" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Horários disponíveis</button>
+            <ul class="dropdown-menu">
+              <% (7..21).each do |n| %>
+                <li>
+                  <a href="#" id=<%= "#{n}" %> class="small" data-value=<%= "#{n}" %> tabIndex="-1">
+                    <input type="checkbox" name=<%= "timeslot_#{n}" %> value=<%= n %>>&nbsp;<%= "#{n}:00 - #{n+1}:00" %></a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Reservar</button>
+
+  </form>
+</div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    // Datepicker
+    $(document).ready(function(){
+      $('.datepicker').datepicker({
+        todayHighlight: true,
+        format: "dd/mm/yyyy",
+        language: "pt-BR"
+      });
+    });
+  <% end %>
+<% end %>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    // Dropdown checkbox
+    var options = [];
+    $( '.dropdown-menu a' ).on( 'click', function( event ) {
+
+       var $target = $( event.currentTarget ),
+           val = $target.attr( 'data-value' ),
+           $inp = $target.find( 'input' ),
+           idx;
+
+       if ( ( idx = options.indexOf( val ) ) > -1 ) {
+          options.splice( idx, 1 );
+          setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
+       } else {
+          options.push( val );
+          setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
+       }
+
+       $( event.target ).blur();
+
+       console.log( options );
+       return false;
+    });
+
+    const reservations = <%=raw @room.reservations.to_json %>;
+
+    // quando clica no menu de escolha de timeslot
+
+    const tsmenu = document.getElementById("timeslots-menu")
+    tsmenu.addEventListener("click", (event) => {
+
+      // pega o valor do datepicker
+      let date = document.getElementById("datepicker").value;
+      console.log(date);
+      "17/11/2018"
+      var day = date.slice(0,2);
+      var month = date.slice(3,5);
+      var year = date.slice(6,10);
+      var jsdate = year + "-" + month + "-" + day
+      console.log(jsdate);
+
+      // filtra as reservations por data:
+      // para cada reservation pega slots ocupados
+      var occupied = reservations.filter(reservation => reservation.date === jsdate).map(reservation => reservation.timeslot);
+
+      // does not display already occupied timeslots
+      for (var i = 0; i < occupied.length; i++) {
+        document.getElementById(occupied[i].toString()).querySelector("input").setAttribute("disabled", "");
+        document.getElementById(occupied[i].toString()).style.display = "none";
+      };
+    });
+  <% end %>
+<% end %>
