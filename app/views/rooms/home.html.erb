@@ -5,7 +5,7 @@
     </div>
     <div class="banner_form">
       <%= form_tag rooms_path, method: :get, class: "form-inline" do %>
-      <%= text_field_tag "address", nil, placeholder: "Endereço", class: "form-control" %>
+      <%= text_field_tag "address", nil, placeholder: "Endereço", class: "form-control", id: "address" %>
       <%= text_field_tag "when", nil, placeholder: "dd/mm/yyyy", class: "form-control" %>
       <%= select_tag(:type, options_for_select(['Psicologia', 'Odontologia', 'Nutrição', 'Psiquiatria']), class: "form-control") %>
       <%= button_tag :submit, class: "btn btn-success" do %>
@@ -15,3 +15,15 @@
     </div>
   </div>
 </div>
+
+<script>
+  function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('address'), { types: ['geocode'] });
+
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+    // autocomplete.addListener('place_changed', fillInAddress);
+  }
+</script>
