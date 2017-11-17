@@ -69,6 +69,6 @@
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
     const coord = <%= raw @room_coordinates.to_json %>;
-    alert('Room coordinates are ' + coord.lat + ', ' + coord.lng);
+
   <% end %>
 <% end %>
