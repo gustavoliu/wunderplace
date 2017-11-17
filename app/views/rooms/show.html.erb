@@ -1,15 +1,5 @@
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap + Fontawesome CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-  </head>
-    <body>
 <div class="container">
   <div class="col-xs-6">
     <div class="box_room">
@@ -38,12 +28,19 @@
             <%= render partial: 'block_feature', locals: {feature: 'Área fumantes', boolean: @room.smoking_allowed} %>
           </li>
         </ul>
+        <br>
+        <h4> Avaliações: </h4>
+        <%= render 'review_show' %>
+        <br>
+        <br>
+
         <% if @room.user == current_user %>
           <p><%= link_to 'Editar', edit_room_url, class: 'btn btn-primary'%></p>
         <% end %>
         <div class="reservation_module">
           <%= link_to "Reserve agora", new_room_reservation_path(@room), class: 'btn btn-primary' %>
         </div>
+
       </div>
     </div>
 
@@ -72,6 +69,7 @@
 </div>
  </body>
 </html>
+
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
